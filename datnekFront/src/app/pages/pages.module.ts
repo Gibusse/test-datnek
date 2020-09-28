@@ -4,6 +4,7 @@ import {COMPONENTS, PagesRoutingModule} from "./pages-routing.module";
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatIconModule} from "@angular/material/icon";
+import { NewLanguageComponent } from './new-language/new-language.component';
 
 const components = [
   ...COMPONENTS
@@ -11,7 +12,8 @@ const components = [
 
 @NgModule({
   declarations: [
-    ...components
+    ...components,
+    NewLanguageComponent
   ],
   imports: [
     CommonModule,
