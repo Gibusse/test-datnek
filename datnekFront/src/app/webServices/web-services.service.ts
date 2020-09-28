@@ -12,23 +12,23 @@ export class WebServicesService {
   constructor(private http: HttpClient) { }
 
   read(){
-    return this.http.get<any>(`${this.API.url}${this.API.port}`);
+    return this.http.get<any>(`${this.API.url}${this.API.port}${this.API.api}`);
   }
 
-  create(table, data){
-    return this.http.post<any>(`${this.API.url}${this.API.port}/${table}`, data);
+  create(action, data){
+    return this.http.post<any>(`${this.API.url}${this.API.port}${this.API.api}/${action}`, data);
+  }
+action
+  update(action, data, id){
+    return this.http.put<any>(`${this.API.url}${this.API.port}${this.API.api}/${action}/${id}`, data);
   }
 
-  update(table, data, id){
-    return this.http.put<any>(`${this.API.url}${this.API.port}/${table}/${id}`, data);
+  findOne(action, id){
+    return this.http.get<any>(`${this.API.url}${this.API.port}${this.API.api}/${action}/${id}`);
   }
 
-  findOne(table, id){
-    return this.http.get<any>(`${this.API.url}${this.API.port}/${table}/${id}`);
-  }
-
-  deleteOne(table, id){
-    return this.http.delete<any>(`${this.API.url}${this.API.port}/${table}`, id);
+  deleteOne(action, id){
+    return this.http.delete<any>(`${this.API.url}${this.API.port}${this.API.api}/${action}`, id);
   }
 
 

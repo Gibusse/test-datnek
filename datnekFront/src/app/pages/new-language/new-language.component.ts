@@ -9,6 +9,9 @@ import {WebServicesService} from "../../webServices/web-services.service";
 })
 export class NewLanguageComponent implements OnInit {
   addForm: FormGroup;
+  writing = ['Elementaire', 'Pré-intermédiaire', 'Intermédiaire', 'Courant'];
+  speaking = ['Elementaire', 'Pré-intermédiaire', 'Intermédiaire', 'Courant'];
+  comprehension = ['Elementaire', 'Pré-intermédiaire', 'Intermédiaire', 'Courant'];
 
   constructor(private fb: FormBuilder, private ws: WebServicesService) { }
 
@@ -27,9 +30,11 @@ export class NewLanguageComponent implements OnInit {
 
   addLanguage(data){
     console.log(data);
-    this.ws.create('table', data)
+    this.ws.create('selectedLanguage', data)
       .subscribe(
-        res => console.log(res),
+        res => {
+
+        },
         error => console.error(error)
       )
   }

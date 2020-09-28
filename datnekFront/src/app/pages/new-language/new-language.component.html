@@ -1,7 +1,7 @@
 <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
   <a routerLink="/pages/list-of-languages">DATNEK</a>
   <mat-divider></mat-divider>
-  mauger@gmail.com
+
 </nav>
 
 <div class="container-md">
@@ -14,18 +14,27 @@
         </div>
         <div class="col-md-3 mb-3">
           <label for="speaking">Niveau parlé <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" formControlName="speaking" id="speaking"  required>
+          <mat-select class="form-control" formControlName="speaking" id="speaking">
+            <mat-option>-- None --</mat-option>
+            <mat-option  *ngFor="let s of speaking" value="{{s}}">{{ s }}</mat-option>
+          </mat-select>
         </div>
       </div>
 
       <div class="form-row">
         <div class="col-md-3 mb-3">
           <label for="writing">Niveau écrit <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" formControlName="writing" id="writing" required>
+          <mat-select class="form-control" formControlName="writing" id="writing">
+            <mat-option>-- None --</mat-option>
+            <mat-option  *ngFor="let w of writing" value="{{w}}">{{ w }}</mat-option>
+          </mat-select>
         </div>
         <div class="col-md-3 mb-3">
           <label for="comprehension">Niveau de compréhension <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" formControlName="comprehension" id="comprehension"  required>
+          <mat-select class="form-control" formControlName="comprehension" id="comprehension">
+            <mat-option>-- None --</mat-option>
+            <mat-option  *ngFor="let c of comprehension" value="{{c}}">{{ c }}</mat-option>
+          </mat-select>
         </div>
       </div>
 

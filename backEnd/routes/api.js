@@ -15,13 +15,13 @@ router.get('/', (req, res) => {
  */
 router.post('/selectedLanguage', (req, res) => {
     let selected = req.body;
-    //selectedLanguages.add(selected, res)
+    selectedLanguages.add(selected, res)
 
 });
 
 router.get('/selectedLanguage', (req, res) => {
     let selected = req.body;
-    //selectedLanguages.findAll(selected, res)
+    selectedLanguages.findAll(selected, res)
 
 });
 

@@ -1,5 +1,5 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
-import {FormGroup} from "@angular/forms";
+import {Component, Inject, Input, OnInit, Output} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {ListLanguages} from "../../models/list-languages";
 
 @Component({
@@ -8,13 +8,16 @@ import {ListLanguages} from "../../models/list-languages";
   styleUrls: ['./details-language.component.scss']
 })
 export class DetailsLanguageComponent implements OnInit {
-  @Input() detailLanguage: ListLanguages;
 
 
-  constructor() { }
+  /**
+   * Initialise dialog from material library with data
+   * to display
+   * @param data
+   */
+  constructor(@Inject(MAT_DIALOG_DATA) public data: ListLanguages) { }
 
   ngOnInit(): void {
-    console.log(this.detailLanguage);
   }
 
 }

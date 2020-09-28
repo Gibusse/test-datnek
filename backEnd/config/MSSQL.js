@@ -1,10 +1,10 @@
 
 dbConfig = {
-    server: 'localhost',
+    server: 'HOSTNAME',
     port: 1433,
-    user: 'sa',
-    password: 'Coolbreeze_01',
-    database: 'datnek',
+    user: 'USERNAME',
+    password: 'PASSWORD',
+    database: 'DATABASE',
     connectionTimeout: 150000,
     pool: {
         max: 20,

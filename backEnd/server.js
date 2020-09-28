@@ -18,10 +18,17 @@ app.use('/api', api);
 
 
 app.get('/', (req, res) => {
-    res.send('Hello from server')
+    res.send('Your are in the server')
 });
 
-mssql.connect(db).then(pool => {
+app.listen(PORT, () => {
+    console.log('Server running on port ', PORT)
+})
+
+/**
+ * This is the connection with mssql
+ */
+/*mssql.connect(db).then(pool => {
     if(pool.connecting){
         console.log("Connecting to the database...");
     }
@@ -33,6 +40,6 @@ mssql.connect(db).then(pool => {
 }).catch((err) => {
     console.log('failed to open connection to the database');
     console.log(err)
-})
+})*/
 
 

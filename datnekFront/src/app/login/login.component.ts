@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {Form, FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 
 @Component({
@@ -8,23 +8,23 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
- loginForm: FormGroup;
+ loginForm: NgForm;
 
   constructor(private router: Router, private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.initForm();
-    console.log(!this.loginForm.valid)
   }
 
   initForm() {
-    this.loginForm = this.fb.group({
-      userEmail: ['']
-    })
   }
 
+  /**
+   * Connecte with email
+   * @param $e
+   */
   loginUser($e){
     $e.preventDefault();
-    console.log(this.loginForm)
+
+    this.router.navigateByUrl('/pages/list-of-languages')
   }
 }
