@@ -1,12 +1,12 @@
 <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-  Datnek
+  <a routerLink="/pages/list-of-languages">DATNEK</a>
   <mat-divider></mat-divider>
   mauger@gmail.com
 </nav>
 
 <div class="container-md">
-  <div class="col-md-6">
-    <form [formGroup]="addForm">
+  <div class="col-md-12 offset-sm-2">
+    <form [formGroup]="addForm" (ngSubmit)="addLanguage(addForm.value)">
       <div class="form-row">
         <div class="col-md-3 mb-3">
           <label for="language">Choisir une langue</label>
@@ -29,7 +29,7 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-primary">Ajouter</button>
+      <button type="submit" [disabled]="!addForm.valid" class="btn btn-primary">Ajouter</button>
     </form>
   </div>
 </div>
