@@ -1,1 +1,35 @@
-<p>new-language works!</p>
+<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+  Datnek
+  <mat-divider></mat-divider>
+  mauger@gmail.com
+</nav>
+
+<div class="container-md">
+  <div class="col-md-6">
+    <form [formGroup]="addForm">
+      <div class="form-row">
+        <div class="col-md-3 mb-3">
+          <label for="language">Choisir une langue</label>
+          <input type="text" class="form-control" formControlName="language" id="language" required>
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="speaking">Niveau parlé <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" formControlName="speaking" id="speaking"  required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-3 mb-3">
+          <label for="writing">Niveau écrit <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" formControlName="writing" id="writing" required>
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="comprehension">Niveau de compréhension <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" formControlName="comprehension" id="comprehension"  required>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Ajouter</button>
+    </form>
+  </div>
+</div>

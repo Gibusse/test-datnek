@@ -4,10 +4,10 @@ import {COMPONENTS, PagesRoutingModule} from "./pages-routing.module";
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatIconModule} from "@angular/material/icon";
-import { NewLanguageComponent } from './new-language/new-language.component';
 import {MatDividerModule} from "@angular/material/divider";
-import { UpdateLanguageComponent } from './update-language/update-language.component';
-import { DetailsLanguageComponent } from './details-language/details-language.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {ReactiveFormsModule} from "@angular/forms";
 
 const components = [
   ...COMPONENTS
@@ -15,10 +15,7 @@ const components = [
 
 @NgModule({
   declarations: [
-    ...components,
-    NewLanguageComponent,
-    UpdateLanguageComponent,
-    DetailsLanguageComponent
+    ...components
   ],
   imports: [
     CommonModule,
@@ -26,7 +23,10 @@ const components = [
     MatTableModule,
     MatPaginatorModule,
     MatIconModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    ReactiveFormsModule
   ]
 })
 export class PagesModule { }

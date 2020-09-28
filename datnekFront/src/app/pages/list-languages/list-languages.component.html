@@ -1,13 +1,13 @@
 <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
   Datnek
   <mat-divider></mat-divider>
-  <button class="btn btn-secondary">Modal State</button>
+  <button [class]="stateClass">Modal Closed</button>
   <mat-divider></mat-divider>
   mauger@gmail.com
 </nav>
 <div class="container-sm">
   <h2>Liste des langues</h2>
-  <button class="btn btn-primary float-sm-right">Ajouter</button>
+  <button (click)="goToAddNewLanguage()" class="btn btn-primary float-sm-right">Ajouter</button>
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource">
 
@@ -38,7 +38,7 @@
         <th mat-header-cell *matHeaderCellDef> Action </th>
         <td mat-cell *matCellDef="let element">
           <button class="btn btn-success">Modifier</button> |
-          <button class="btn btn-warning">Détails</button> |
+          <button (click)="detailLanguage(element)" class="btn btn-warning">Détails</button> |
           <button class="btn btn-danger">Supprimer</button>
         </td>
       </ng-container>
@@ -49,4 +49,6 @@
 
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>
+
 </div>
+
