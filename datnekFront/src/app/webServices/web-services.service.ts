@@ -15,20 +15,20 @@ export class WebServicesService {
     return this.http.get<any>(`${this.API.url}${this.API.port}`);
   }
 
-  create(){
-
+  create(table, data){
+    return this.http.post<any>(`${this.API.url}${this.API.port}/${table}`, data);
   }
 
-  update(){
-    
+  update(table, data, id){
+    return this.http.put<any>(`${this.API.url}${this.API.port}/${table}/${id}`, data);
   }
 
-  findOne(){
-
+  findOne(table, id){
+    return this.http.get<any>(`${this.API.url}${this.API.port}/${table}/${id}`);
   }
 
-  deleteOne(){
-
+  deleteOne(table, id){
+    return this.http.delete<any>(`${this.API.url}${this.API.port}/${table}`, id);
   }
 
 
