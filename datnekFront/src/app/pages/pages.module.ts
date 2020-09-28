@@ -5,6 +5,8 @@ import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatIconModule} from "@angular/material/icon";
 import { NewLanguageComponent } from './new-language/new-language.component';
+import {MatDividerModule} from "@angular/material/divider";
+import { UpdateLanguageComponent } from './update-language/update-language.component';
 
 const components = [
   ...COMPONENTS
@@ -13,14 +15,16 @@ const components = [
 @NgModule({
   declarations: [
     ...components,
-    NewLanguageComponent
+    NewLanguageComponent,
+    UpdateLanguageComponent
   ],
   imports: [
     CommonModule,
     PagesRoutingModule,
     MatTableModule,
     MatPaginatorModule,
-    MatIconModule
+    MatIconModule,
+    MatDividerModule
   ]
 })
 export class PagesModule { }

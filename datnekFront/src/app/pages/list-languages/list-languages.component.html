@@ -1,5 +1,9 @@
 <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
   Datnek
+  <mat-divider></mat-divider>
+  <button class="btn btn-secondary">Modal State</button>
+  <mat-divider></mat-divider>
+  mauger@gmail.com
 </nav>
 <div class="container-sm">
   <h2>Liste des langues</h2>
@@ -33,8 +37,8 @@
       <ng-container  matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> Action </th>
         <td mat-cell *matCellDef="let element">
-          <button class="btn btn-warning">Editer</button> |
-          <button class="btn btn-primary">Voir</button> |
+          <button class="btn btn-success">Modifier</button> |
+          <button class="btn btn-warning">Détails</button> |
           <button class="btn btn-danger">Supprimer</button>
         </td>
       </ng-container>
