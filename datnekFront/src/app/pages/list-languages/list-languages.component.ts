@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListLanguagesComponent implements OnInit {
 
+  displayedColumns: string[] = []
   constructor() { }
 
   ngOnInit(): void {
