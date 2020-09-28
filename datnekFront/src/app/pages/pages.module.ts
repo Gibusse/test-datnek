@@ -9,8 +9,7 @@ const components = [
 
 @NgModule({
   declarations: [
-    ...components,
-    ListLanguagesComponent
+    ...components
   ],
   imports: [
     CommonModule,
