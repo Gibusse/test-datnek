@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 
@@ -8,12 +8,13 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
+ loginForm: FormGroup;
 
   constructor(private router: Router, private fb: FormBuilder) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.initForm();
+    console.log(!this.loginForm.valid)
   }
 
   initForm() {
@@ -22,5 +23,8 @@ export class LoginComponent implements OnInit {
     })
   }
 
-
+  loginUser($e){
+    $e.preventDefault();
+    console.log(this.loginForm)
+  }
 }
