@@ -16,7 +16,7 @@ module.exports.findDone = function(req, res) {
     let querySelect = `SELECT selectedLanguage.* , user.Id, user.email, language.Id, language.name
                        FROM selectedLanguage 
                        LEFT JOIN user on selectedLanguage.userId = user.Id
-                       AND language on selectedLanguage.languageId = language.Id
+                       LEFT JOIN  language on selectedLanguage.languageId = language.Id
                        WHERE userId = req.userId`;
 
     mysql.db.query(querySelect, (err, row) => {
@@ -28,7 +28,7 @@ module.exports.findAll = function(req, res) {
     let querySelect = `SELECT selectedLanguage.* , user.Id, user.email, language.Id, language.name
                        FROM selectedLanguage 
                        LEFT JOIN user on selectedLanguage.userId = user.Id
-                       AND language on selectedLanguage.languageId = language.Id
+                       LEFT JOIN language on selectedLanguage.languageId = language.Id
                        WHERE userId = req.userId`;
 
     mysql.db.query(querySelect, (err, row) => {
