@@ -50,7 +50,7 @@ export class WebServicesService {
    * @param id
    */
   patching(action, data, id) {
-    return this.http.patch(`${this.API.url}${this.API.port}${this.API.api}/${action}/${id}`, data);
+    return this.http.patch<any>(`${this.API.url}${this.API.port}${this.API.api}/${action}/${id}`, data);
   }
 
   /**
