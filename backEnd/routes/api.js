@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const selectedLanguages = require('../services/selectedServices');
+const user = require('../services/userServices');
 
 /**
  *  Show that the url is on localhost:3000/api
@@ -24,5 +25,15 @@ router.get('/selectedLanguage', (req, res) => {
     selectedLanguages.findAll(selected, res)
 
 });
+
+router.post('/login', (req, res) =>{
+    let email = req.body;
+    const request = new Request({
+        type: req.body.type,
+        info: req.body.info
+    });
+    res.send(request);
+    //user.register(email, res);
+})
 
 module.exports = router

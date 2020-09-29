@@ -17,13 +17,19 @@ export class LoginComponent implements OnInit {
     this.initForm();
   }
 
+  /**
+   * Initiliase the form with FormBuilder
+   */
   initForm() {
     this.loginForm = this.fb.group({
       userEmail: ['', Validators.required]
     })
   }
 
-
+  /**
+   * Register or login with email only
+   * @param dataForm
+   */
   loginUser(dataForm){
     this.ws.create('login', dataForm)
       .subscribe(
