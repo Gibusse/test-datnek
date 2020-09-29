@@ -12,8 +12,8 @@ export class WebServicesService {
 
   constructor(private http: HttpClient) { }
 
-  read(){
-    return this.http.get<any>(`${this.API.url}${this.API.port}${this.API.api}`);
+  read(action){
+    return this.http.get<any>(`${this.API.url}${this.API.port}${this.API.api}/${action}`);
   }
 
   create(action, data){
