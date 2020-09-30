@@ -101,4 +101,9 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
       )
   }
 
+  logOut(){
+    localStorage.removeItem('id');
+    this.router.navigateByUrl('/login');
+  }
+
 }

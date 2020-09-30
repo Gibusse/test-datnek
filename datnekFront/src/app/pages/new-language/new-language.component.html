@@ -2,7 +2,14 @@
   <a routerLink="/pages/list-of-languages/{{ userId }}">DATNEK</a>
   <mat-divider></mat-divider>
   <mat-divider></mat-divider>
-  <button class="btn btn-outline-primary">{{ userInfo ? userInfo.userEmail : '' }}</button>
+  <div class="dropdown col-md-2">
+    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      {{ userInfo ? userInfo.userEmail : '' }}
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <button class="dropdown-item" (click)="logOut()">Logout</button>
+    </div>
+  </div>
 </nav>
 
 <div class="container-md">

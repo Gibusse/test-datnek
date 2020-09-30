@@ -68,4 +68,9 @@ export class NewLanguageComponent implements OnInit {
       )
   };
 
+  logOut(){
+    localStorage.removeItem('id');
+    this.router.navigateByUrl('/login');
+  }
+
 }
