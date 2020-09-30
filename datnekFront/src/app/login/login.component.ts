@@ -35,8 +35,14 @@ export class LoginComponent implements OnInit {
       .subscribe(
         res => {
           if (res.affectedRows === 1 || res[0]) {
-            if (res.insertId) this.router.navigate(['/pages/list-of-languages', res.Id])
-            if(res[0].Id) this.router.navigate(['/pages/list-of-languages', res[0].Id])
+            if (res.insertId) {
+              localStorage.setItem('id', res.insertId);
+              this.router.navigate(['/pages/list-of-languages', res.Id]);
+            }
+            if(res[0].Id) {
+              localStorage.setItem('id', res[0].Id);
+              this.router.navigate(['/pages/list-of-languages', res[0].Id])
+            }
           }
         },
         error => {}

@@ -12,11 +12,11 @@ import { UserInfo } from "../../models/userInfo";
 /**
  * Data to local test on frontEnd
  */
-let ELEMENT_DATA: ListLanguages[] = [
+/*let ELEMENT_DATA: ListLanguages[] = [
   {id: 1, language: 'français', writing: 'intermédiaire', comprehension: 'courant', speaking: 'intermédiaire'},
   {id: 2, language: 'anglais', writing: 'intermédiaire', comprehension: 'courant', speaking: 'intermédiaire'},
   {id: 3, language: 'nerlandais', writing: 'intermédiaire', comprehension: 'courant', speaking: 'intermédiaire'}
-]
+]*/
 
 @Component({
   selector: 'app-list-languages',
@@ -29,13 +29,14 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
   public stateClass = 'btn btn-secondary';
   public stateText = 'Modal closed';
   userInfo: UserInfo;
+  listOfLanguages: ListLanguages[];
 
   /**
    * Configuration for what table columns should display
    * also with data retrieving from database
    */
-  displayedColumns: string[] = ['language', 'writing', 'speaking', 'comprehension', 'id'];
-  dataSource = new MatTableDataSource<ListLanguages>(ELEMENT_DATA);
+  displayedColumns: string[] = ['languageName', 'writing', 'speaking', 'comprehension', 'Id'];
+  dataSource = new MatTableDataSource<ListLanguages>(this.listOfLanguages);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -44,6 +45,7 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.getUser();
+    this.getAllLanguages();
   }
 
   /**
@@ -66,7 +68,6 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
    * @param data
    */
   detailLanguage(data){
-    console.log('list ', data)
     const dialogRef = this.dialog.open(DetailsLanguageComponent, {data: data});
     this.stateClass = 'btn btn-success';
     this.stateText = 'Modal opened';
@@ -77,12 +78,24 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
     });
   }
 
+  /**
+   * GET user info
+   */
   getUser() {
     const id = this.params.snapshot.paramMap.get('Id');
-    this.ws.findOne('/getUser', id)
+    this.ws.findOne('getUser', id)
       .subscribe(
         res => this.userInfo = res[0],
         error => this.router.navigateByUrl('/login')
+      )
+  }
+
+  getAllLanguages() {
+    let id = localStorage.getItem('id');
+    this.ws.findAll('selectedLanguage', id)
+      .subscribe(
+        res => this.dataSource = res,
+        error => console.error(error)
       )
   }
 

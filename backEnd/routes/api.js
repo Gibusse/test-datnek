@@ -15,15 +15,22 @@ router.get('/', (req, res) => {
 /**
  * Adding selected language with different options
  */
-router.post('/selectedLanguage', (req, res) => {
+router.post('/selectedLanguage/:id', (req, res) => {
     let selected = req.body;
     selectedLanguages.add(selected, res)
 
 });
 
-router.get('/selectedLanguage', (req, res) => {
-    let selected = req.body;
-    selectedLanguages.findAll(selected, res)
+router.get('/selectedLanguage/:id', (req, res) => {
+    let userData = req.params;
+    selectedLanguages.findAll(userData, res)
+
+});
+
+router.get('/selectedLanguage/:id', (req, res) => {
+    let datas = req.params;
+    datas.languageId = req.body;
+    selectedLanguages.findOne(datas, res)
 
 });
 

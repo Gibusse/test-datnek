@@ -15,11 +15,11 @@ const routes: Routes = [
         component: ListLanguagesComponent
       },
       {
-        path: 'new-language',
+        path: 'new-language/:id',
         component: NewLanguageComponent
       },
       {
-        path: 'update-language',
+        path: 'update-language/:id',
         component: UpdateLanguageComponent
       },
       {

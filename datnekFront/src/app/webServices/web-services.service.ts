@@ -55,6 +55,16 @@ export class WebServicesService {
 
   /**
    * GET METHOD
+   * This method retrieve multiple records by id
+   * @param action
+   * @param id
+   */
+  findAll(action, id){
+    return this.http.get<any>(`${this.API.url}${this.API.port}${this.API.api}/${action}/${id}`);
+  }
+
+  /**
+   * GET METHOD
    * This method retrieve record by id
    * @param action
    * @param id

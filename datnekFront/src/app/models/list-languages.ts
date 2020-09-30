@@ -1,6 +1,6 @@
 export interface ListLanguages {
-  id: number;
-  language: string;
+  Id: number;
+  languageName: string;
   writing: string;
   speaking: string;
   comprehension: string;
