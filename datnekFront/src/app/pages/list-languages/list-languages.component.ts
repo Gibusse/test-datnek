@@ -30,6 +30,7 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
   public stateText = 'Modal closed';
   userInfo: UserInfo;
   listOfLanguages: ListLanguages[];
+  public userId = localStorage.getItem('id');
 
   /**
    * Configuration for what table columns should display
@@ -59,7 +60,7 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
    * Open page to create new language
    */
   goToAddNewLanguage(){
-    this.router.navigateByUrl('/pages/new-language');
+    this.router.navigate(['/pages/new-language', this.userId]);
   }
 
   /**
@@ -91,8 +92,7 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
   }
 
   getAllLanguages() {
-    let id = localStorage.getItem('id');
-    this.ws.findAll('selectedLanguage', id)
+    this.ws.findAll('selectedLanguage', this.userId)
       .subscribe(
         res => this.dataSource = res,
         error => console.error(error)
