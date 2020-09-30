@@ -6,6 +6,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {DetailsLanguageComponent} from "../details-language/details-language.component";
 import {ActivatedRoute, Router} from "@angular/router";
 import {WebServicesService} from "../../webServices/web-services.service";
+import { UserInfo } from "../../models/userInfo";
 
 
 /**
@@ -27,6 +28,7 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
 
   public stateClass = 'btn btn-secondary';
   public stateText = 'Modal closed';
+  userInfo: UserInfo;
 
   /**
    * Configuration for what table columns should display
@@ -79,7 +81,7 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
     const id = this.params.snapshot.paramMap.get('Id');
     this.ws.findOne('/getUser', id)
       .subscribe(
-        res => console.log(res),
+        res => this.userInfo = res[0],
         error => console.error(error)
       )
   }
