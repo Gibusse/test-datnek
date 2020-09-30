@@ -82,7 +82,7 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
     this.ws.findOne('/getUser', id)
       .subscribe(
         res => this.userInfo = res[0],
-        error => console.error(error)
+        error => this.router.navigateByUrl('/login')
       )
   }
 

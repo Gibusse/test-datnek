@@ -24,7 +24,7 @@ module.exports.register = function(userData, res) {
                     res.status(400).send(err)
                 } else {
                     result.message = 'Ajout réussi';
-                    res.status(200).send(result)
+                    res.status(201).send(result)
                 }
 
             });
@@ -42,7 +42,11 @@ module.exports.getUser = ((userData, res) => {
         if(err) {
             res.status(400).send(err)
         } else {
-            res.status(200).send(result);
+            if(result[0]) {
+                res.status(200).send(result);
+            } else {
+                res.status(404).send('Not Found');
+            }
         }
     })
 })
