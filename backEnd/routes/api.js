@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 /**
  * Adding selected language with different options
  */
-router.post('/selectedLanguage/:id', (req, res) => {
+router.post('/addSelectedLanguage/:id', (req, res) => {
     let selected = req.body;
     selectedLanguages.add(selected, res)
 

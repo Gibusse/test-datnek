@@ -1,16 +1,18 @@
 <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-  <a routerLink="/pages/list-of-languages">DATNEK</a>
+  <a routerLink="/pages/list-of-languages/{{ userId }}">DATNEK</a>
   <mat-divider></mat-divider>
-
+  <mat-divider></mat-divider>
+  <button class="btn btn-outline-primary">{{ userInfo ? userInfo.userEmail : '' }}</button>
 </nav>
 
 <div class="container-md">
   <div class="col-md-12 offset-sm-2">
     <form [formGroup]="addForm" (ngSubmit)="addLanguage(addForm.value)">
+      <input type="hidden" formControlName="userId" value="{{userInfo ? userInfo.Id : '' }}">
       <div class="form-row">
         <div class="col-md-3 mb-3">
           <label for="language">Choisir une langue</label>
-          <mat-select class="form-control" formControlName="language" id="language">
+          <mat-select class="form-control" formControlName="languageId" id="language">
             <mat-option>-- None --</mat-option>
             <mat-option  *ngFor="let language of listLanguages" value="{{ language.Id }}">{{ language.languageName }}</mat-option>
           </mat-select>

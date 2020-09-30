@@ -7,6 +7,8 @@ import {DetailsLanguageComponent} from "../details-language/details-language.com
 import {ActivatedRoute, Router} from "@angular/router";
 import {WebServicesService} from "../../webServices/web-services.service";
 import { UserInfo } from "../../models/userInfo";
+import {UsersService} from "../../webServices/users.service";
+import {PagesComponent} from "../pages.component";
 
 
 /**
@@ -42,7 +44,8 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private dialog: MatDialog, private router: Router,
-              private params: ActivatedRoute, private ws: WebServicesService) { }
+              private params: ActivatedRoute, private ws: WebServicesService,
+              private userService: UsersService) { }
 
   ngOnInit(): void {
     this.getUser();
@@ -82,14 +85,13 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
   /**
    * GET user info
    */
-  getUser() {
-    const id = this.params.snapshot.paramMap.get('Id');
-    this.ws.findOne('getUser', id)
+  getUser () {
+    this.userService.getUserInfo(this.userId)
       .subscribe(
         res => this.userInfo = res[0],
         error => this.router.navigateByUrl('/login')
       )
-  }
+  };
 
   getAllLanguages() {
     this.ws.findAll('selectedLanguage', this.userId)

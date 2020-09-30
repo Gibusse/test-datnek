@@ -9,6 +9,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatSelectModule} from "@angular/material/select";
+import {UsersService} from "../webServices/users.service";
 
 const components = [
   ...COMPONENTS

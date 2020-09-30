@@ -27,8 +27,8 @@ export class WebServicesService {
    * @param action
    * @param data
    */
-  create(action, data){
-    return this.http.post<any>(`${this.API.url}${this.API.port}${this.API.api}/${action}`, data);
+  create(action, data, id =''){
+    return this.http.post<any>(`${this.API.url}${this.API.port}${this.API.api}/${action}/${id}`, data);
   }
 
   /**
