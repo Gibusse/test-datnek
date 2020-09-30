@@ -9,6 +9,7 @@ import {WebServicesService} from "../../webServices/web-services.service";
 })
 export class NewLanguageComponent implements OnInit {
   addForm: FormGroup;
+  listLanguages = [];
   writing = ['Elementaire', 'Pré-intermédiaire', 'Intermédiaire', 'Courant'];
   speaking = ['Elementaire', 'Pré-intermédiaire', 'Intermédiaire', 'Courant'];
   comprehension = ['Elementaire', 'Pré-intermédiaire', 'Intermédiaire', 'Courant'];
@@ -17,6 +18,7 @@ export class NewLanguageComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    this.getLanguages();
   }
 
   initForm(){
@@ -29,12 +31,19 @@ export class NewLanguageComponent implements OnInit {
   }
 
   addLanguage(data){
-    console.log(data);
     this.ws.create('selectedLanguage', data)
       .subscribe(
         res => {
 
         },
+        error => console.error(error)
+      )
+  }
+
+  getLanguages() {
+    this.ws.read('languages')
+      .subscribe(
+        res => this.listLanguages = res,
         error => console.error(error)
       )
   }
