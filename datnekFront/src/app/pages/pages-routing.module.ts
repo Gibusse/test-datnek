@@ -21,6 +21,11 @@ const routes: Routes = [
       {
         path: 'update-language',
         component: UpdateLanguageComponent
+      },
+      {
+        path: '**',
+        pathMatch: 'full',
+        redirectTo: '/login'
       }
     ]
   }
