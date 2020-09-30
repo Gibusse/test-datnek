@@ -28,12 +28,7 @@ router.get('/selectedLanguage', (req, res) => {
 
 router.post('/login', (req, res) =>{
     let email = req.body;
-    const request = new Request({
-        type: req.body.type,
-        info: req.body.info
-    });
-    res.send(request);
-    //user.register(email, res);
+    user.register(email, res);
 })
 
 module.exports = router

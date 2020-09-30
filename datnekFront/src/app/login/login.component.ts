@@ -33,8 +33,10 @@ export class LoginComponent implements OnInit {
   loginUser(dataForm){
     this.ws.create('login', dataForm)
       .subscribe(
-        res => console.log(res),
-        error => console.error(error)
+        res => {
+          if (res.affectedRows === 1 || res[0]) this.router.navigateByUrl('/pages/list-of-languages');
+        },
+        error => {}
       )
   }
 }

@@ -8,21 +8,22 @@ const mysql = require('../config/MySQL');
  * @param res
  */
 module.exports.register = function(userData, res) {
-    const querySelect = 'SELECT * FROM user WHERE userEmail = ?';
-    const param = [userData.email];
-    const query = 'INSERT INTO user (userEmail) VALUES (?)';
-    const params = [userData.email];
+    const querySelect = 'SELECT * FROM users WHERE userEmail = ?';
+    const param = [userData.userEmail];
+    const query = 'INSERT INTO users (userEmail) VALUES (?)';
+    const params = [userData.userEmail];
 
     mysql.db.query(querySelect, param, (err, row) => {
         if(row[0]) {
-            if (userData.email === row[0].email) {
-                res.status(401).send('The user already exist');
+            if (userData.userEmail === row[0].userEmail) {
+                res.status(200).send(row);
             }
         }else {
             mysql.db.query(query, params, (err, result) => {
                 if (err) {
                     res.status(400).send(err)
                 } else {
+                    result.message = 'Ajout réussi';
                     res.status(200).send(result)
                 }
 
