@@ -5,6 +5,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatDialog} from "@angular/material/dialog";
 import {DetailsLanguageComponent} from "../details-language/details-language.component";
 import {ActivatedRoute, Router} from "@angular/router";
+import {WebServicesService} from "../../webServices/web-services.service";
 
 
 /**
@@ -37,11 +38,10 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private dialog: MatDialog, private router: Router,
-              private params: ActivatedRoute) { }
+              private params: ActivatedRoute, private ws: WebServicesService) { }
 
   ngOnInit(): void {
-    const id = this.params.snapshot.paramMap.get('Id');
-    console.log(id)
+    this.getUser();
   }
 
   /**
@@ -73,6 +73,15 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
       this.stateClass = 'btn btn-secondary';
       this.stateText = 'Modal closed';
     });
+  }
+
+  getUser() {
+    const id = this.params.snapshot.paramMap.get('Id');
+    this.ws.findOne('/getUser', id)
+      .subscribe(
+        res => console.log(res),
+        error => console.error(error)
+      )
   }
 
 }
