@@ -34,7 +34,10 @@ export class LoginComponent implements OnInit {
     this.ws.create('login', dataForm)
       .subscribe(
         res => {
-          if (res.affectedRows === 1 || res[0]) this.router.navigateByUrl('/pages/list-of-languages');
+          if (res.affectedRows === 1 || res[0]) {
+            if (res.insertId) this.router.navigate(['/pages/list-of-languages', res.Id])
+            if(res[0].Id) this.router.navigate(['/pages/list-of-languages', res[0].Id])
+          }
         },
         error => {}
       )

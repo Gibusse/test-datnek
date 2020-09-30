@@ -4,7 +4,7 @@ import {ListLanguages} from "../../models/list-languages";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatDialog} from "@angular/material/dialog";
 import {DetailsLanguageComponent} from "../details-language/details-language.component";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 
 /**
@@ -36,10 +36,12 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private dialog: MatDialog, private router: Router) { }
+  constructor(private dialog: MatDialog, private router: Router,
+              private params: ActivatedRoute) { }
 
   ngOnInit(): void {
-
+    const id = this.params.snapshot.paramMap.get('Id');
+    console.log(id)
   }
 
   /**

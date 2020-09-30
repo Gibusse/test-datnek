@@ -11,7 +11,7 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: 'list-of-languages',
+        path: 'list-of-languages/:Id',
         component: ListLanguagesComponent
       },
       {

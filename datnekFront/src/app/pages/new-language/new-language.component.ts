@@ -31,6 +31,7 @@ export class NewLanguageComponent implements OnInit {
   }
 
   addLanguage(data){
+
     this.ws.create('selectedLanguage', data)
       .subscribe(
         res => {
