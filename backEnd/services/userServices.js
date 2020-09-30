@@ -31,4 +31,18 @@ module.exports.register = function(userData, res) {
         }
 
     });
-}
+};
+
+module.exports.getUser = ((userData, res) => {
+    const querySelect = 'SELECT * FROM users WHERE Id = ?';
+    const userId = [userData.id];
+
+
+    mysql.db.query(querySelect, userId, (err, result) => {
+        if(err) {
+            res.status(400).send(err)
+        } else {
+            res.status(200).send(result);
+        }
+    })
+})

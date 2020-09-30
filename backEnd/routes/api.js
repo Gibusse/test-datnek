@@ -32,6 +32,11 @@ router.post('/login', (req, res) =>{
     user.register(email, res);
 });
 
+router.get('/getUser/:id', (req, res) => {
+    let id = req.params;
+    user.getUser(id, res);
+});
+
 router.get('/languages', (req, res) => {
     languages.getAllLanguages(res);
 })
