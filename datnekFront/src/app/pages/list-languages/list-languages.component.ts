@@ -101,6 +101,17 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
       )
   }
 
+  deleteLanguage(id) {
+    console.log(id)
+    this.ws.deleteOne('deleteSelectedLanguage', id)
+      .subscribe(
+        res => {
+          console.log(res);
+        },
+        error => console.error(error)
+      )
+  }
+
   logOut(){
     localStorage.removeItem('id');
     this.router.navigateByUrl('/login');

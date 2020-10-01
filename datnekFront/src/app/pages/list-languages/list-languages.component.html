@@ -47,7 +47,7 @@
         <td mat-cell *matCellDef="let element">
           <button class="btn btn-success">Modifier</button> |
           <button (click)="detailLanguage(element)" class="btn btn-warning">Détails</button> |
-          <button class="btn btn-danger">Supprimer</button>
+          <button class="btn btn-danger" (click)="deleteLanguage(element.Id)">Supprimer</button>
         </td>
       </ng-container>
 
