@@ -40,3 +40,15 @@ module.exports.findAll = function(userData, res) {
         res.status(200).send(row);
     })
 }
+
+
+module.exports.deleteOne = function(userData, res) {
+    let id = [userData.id];
+    let querySelect = `DELETE FROM Users_languages
+                       WHERE userId = ?`;
+
+    mysql.db.query(querySelect, id, (err, row) => {
+        if(err) res.status(400).send(err)
+        res.status(200).send(row);
+    })
+}

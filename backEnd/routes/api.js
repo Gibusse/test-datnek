@@ -34,6 +34,12 @@ router.get('/selectedLanguage/:id', (req, res) => {
 
 });
 
+router.delete('/deleteSelectedLanguage/:id', (req, res) => {
+    let userData = req.params;
+
+    selectedLanguages.deleteOne(userData, res);
+})
+
 router.post('/login', (req, res) =>{
     let email = req.body;
     user.register(email, res);
