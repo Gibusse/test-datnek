@@ -102,8 +102,7 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
   }
 
   deleteLanguage(id) {
-    console.log(id)
-    this.ws.deleteOne('deleteSelectedLanguage', id)
+    this.ws.deleteOne('deleteSelectedLanguage', id, this.userId)
       .subscribe(
         res => {
           console.log(res);

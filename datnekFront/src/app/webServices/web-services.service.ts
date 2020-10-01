@@ -77,10 +77,11 @@ export class WebServicesService {
    * DELETE METHOD
    * This method delete a record by id
    * @param action
+   * @param data
    * @param id
    */
-  deleteOne(action, id){
-    return this.http.delete<any>(`${this.API.url}${this.API.port}${this.API.api}/${action}`, id);
+  deleteOne(action, data, id){
+    return this.http.delete<any>(`${this.API.url}${this.API.port}${this.API.api}/${action}/${id}`, data);
   }
 
 
