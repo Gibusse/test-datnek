@@ -43,11 +43,11 @@ module.exports.findAll = function(userData, res) {
 
 
 module.exports.deleteOne = function(userData, res) {
-    let id = [userData.id];
     let querySelect = `DELETE FROM Users_languages
-                       WHERE userId = ?`;
+                       WHERE languageId = ?
+                       AND userId = ?`;
 
-    mysql.db.query(querySelect, id, (err, row) => {
+    mysql.db.query(querySelect, [userData.languageId, userData.id], (err, row) => {
         if(err) res.status(400).send(err)
         res.status(200).send(row);
     })

@@ -81,7 +81,7 @@ export class WebServicesService {
    * @param id
    */
   deleteOne(action, data, id){
-    return this.http.delete<any>(`${this.API.url}${this.API.port}${this.API.api}/${action}/${id}`, data);
+    return this.http.delete<any>(`${this.API.url}${this.API.port}${this.API.api}/${action}/${id}/${data}`);
   }
 
 

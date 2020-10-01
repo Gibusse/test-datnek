@@ -34,9 +34,8 @@ router.get('/selectedLanguage/:id', (req, res) => {
 
 });
 
-router.delete('/deleteSelectedLanguage/:id', (req, res) => {
+router.delete('/deleteSelectedLanguage/:id/:languageId', (req, res) => {
     let userData = req.params;
-
     selectedLanguages.deleteOne(userData, res);
 })
 
