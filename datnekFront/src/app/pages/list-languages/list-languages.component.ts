@@ -8,7 +8,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {WebServicesService} from "../../webServices/web-services.service";
 import { UserInfo } from "../../models/userInfo";
 import {UsersService} from "../../webServices/users.service";
-import {PagesComponent} from "../pages.component";
 
 
 /**
@@ -31,7 +30,7 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
   public stateClass = 'btn btn-secondary';
   public stateText = 'Modal closed';
   userInfo: UserInfo;
-  listOfLanguages: ListLanguages[];
+  listOfLanguages: [];
   public userId = localStorage.getItem('id');
 
   /**
@@ -39,7 +38,7 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
    * also with data retrieving from database
    */
   displayedColumns: string[] = ['languageName', 'writing', 'speaking', 'comprehension', 'Id'];
-  dataSource = new MatTableDataSource<ListLanguages>(this.listOfLanguages);
+  dataSource = new MatTableDataSource<ListLanguages>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -63,7 +62,7 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
    * Open page to create new language
    */
   goToAddNewLanguage(){
-    this.router.navigate(['/pages/new-language', this.userId]);
+    this.router.navigateByUrl('/pages/new-language');
   }
 
   /**
@@ -88,7 +87,7 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
   getUser () {
     this.userService.getUserInfo(this.userId)
       .subscribe(
-        res => this.userInfo = res[0],
+        res => this.userInfo = res,
         error => this.router.navigateByUrl('/login')
       )
   };

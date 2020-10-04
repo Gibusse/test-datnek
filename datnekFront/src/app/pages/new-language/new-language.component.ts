@@ -43,7 +43,7 @@ export class NewLanguageComponent implements OnInit {
     this.ws.create('addSelectedLanguage', data, this.userId)
       .subscribe(
         res => {
-          if(res.affectedRows === 1) this.router.navigate(['/pages/list-of-languages', this.userId]);
+          if(res.affectedRows === 1) this.router.navigateByUrl('/pages/list-of-languages');
         },
         error => this.errors[error]
       )

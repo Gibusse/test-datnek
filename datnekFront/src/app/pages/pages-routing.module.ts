@@ -11,11 +11,11 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: 'list-of-languages/:Id',
+        path: 'list-of-languages',
         component: ListLanguagesComponent
       },
       {
-        path: 'new-language/:id',
+        path: 'new-language',
         component: NewLanguageComponent
       },
       {
