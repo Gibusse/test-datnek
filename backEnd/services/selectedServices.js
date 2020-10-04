@@ -12,42 +12,39 @@ module.exports.add = function(req, res) {
 }
 
 
-module.exports.findOne = function(req, res) {
-    const languageId = [req.languageId];
-    const userId = [req.userId];
-    let querySelect = `SELECT Users_languages.* , users.Id, languages.Id, languages.languageName
+module.exports.findOne = function(data, res) {
+    const querySelect = `SELECT Users_languages.* , users.Id as user_id, languages.Id as language_id, languages.languageName
                        FROM Users_languages 
                        LEFT JOIN users on Users_languages.userId = users.Id
-                       LEFT JOIN  languages on Users_languages.languageId = languages.Id
+                       INNER JOIN  languages on Users_languages.languageId = languages.Id
                        WHERE userId = ?
-                       AND selectedLanguage.Id = ?`;
+                       AND languageId = ?`;
 
-    mysql.db.query(querySelect, [userId, languageId], (err, row) => {
+    mysql.db.query(querySelect, [data.id, data.languageId], (err, row) => {
         res.status(200).send(row);
     })
 }
 
-module.exports.findAll = function(userData, res) {
-    let id = [userData.id];
-    let querySelect = `SELECT Users_languages.* , users.Id, languages.Id, languages.languageName
+module.exports.findAll = function(data, res) {
+    const querySelect = `SELECT Users_languages.* , users.Id as user_id, languages.Id as language_id, languages.languageName
                        FROM Users_languages 
                        LEFT JOIN users on Users_languages.userId = users.Id
                        INNER JOIN languages on Users_languages.languageId = languages.Id
                        WHERE userId = ?`;
 
-    mysql.db.query(querySelect, id, (err, row) => {
+    mysql.db.query(querySelect, data.id, (err, row) => {
 
         res.status(200).send(row);
     })
 }
 
 
-module.exports.deleteOne = function(userData, res) {
-    let querySelect = `DELETE FROM Users_languages
+module.exports.deleteOne = function(data, res) {
+    const querySelect = `DELETE FROM Users_languages
                        WHERE languageId = ?
                        AND userId = ?`;
 
-    mysql.db.query(querySelect, [userData.languageId, userData.id], (err, row) => {
+    mysql.db.query(querySelect, [data.languageId, data.id], (err, row) => {
         if(err) res.status(400).send(err)
         res.status(200).send(row);
     })
