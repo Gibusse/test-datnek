@@ -1,4 +1,5 @@
 const userServices = require('../services/userServices');
+const stringify = require('json-stringify-safe');
 
 /**
  * Register or login controller
@@ -10,7 +11,7 @@ module.exports.register = async (req, res, next) => {
     const { userEmail } = req.body;
     try {
         const user = await userServices.register({userEmail}, res);
-        return res.send(user);
+        return stringify(user, null, 2);
     } catch(e) {
         return res.send(e.message);
     }
@@ -26,7 +27,7 @@ module.exports.getUser = async (req, res, next) => {
     const { id } = req.params;
     try {
         const user = await userServices.getUser({id}, res);
-        return res.send(user);
+        return stringify(user, null, 2);
     } catch (e) {
         return res.send(e.message);
     }
