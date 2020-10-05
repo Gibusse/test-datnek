@@ -37,7 +37,7 @@ router.get('/selectedLanguage/:id', selectedLanguageControllers.retrieveOne);
  * Remove a specific selected language
  * of a user
  */
-router.delete('/deleteSelectedLanguage/:id/:languageId', selectedLanguageControllers.deleteOne)
+router.delete('/deleteSelectedLanguage/:userId/:id', selectedLanguageControllers.deleteOne)
 
 /**
  * POST METHOD

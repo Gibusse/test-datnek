@@ -68,11 +68,11 @@ module.exports.findAll = async (data, res) => {
 
 module.exports.deleteOne = async (data, res) => {
     const querySelect = `DELETE FROM Users_languages
-                       WHERE languageId = ?
+                       WHERE Id = ?
                        AND userId = ?`;
 
     try {
-        const item = await mysql.db.query(querySelect, [data.languageId, data.id], (err, row) => {
+        const item = await mysql.db.query(querySelect, [data.id, data.userId], (err, row) => {
             if(err) {
                 res.status(400).send(err);
             } else {

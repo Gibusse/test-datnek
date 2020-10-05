@@ -34,9 +34,9 @@ module.exports.retrieveOne = async (req, res) => {
 }
 
 module.exports.deleteOne = async (req, res) => {
-    const { id, languageId } = req.params;
+    const { id, userId } = req.params;
     try {
-        const item = await SelectedService.deleteOne({languageId, id }, res);
+        const item = await SelectedService.deleteOne({userId, id }, res);
         return stringify(item, null, 2);
     } catch (error) {
         return res.send(error);
