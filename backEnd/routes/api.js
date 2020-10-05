@@ -1,10 +1,9 @@
 /** Router api **/
 const express = require('express');
 const router = express.Router();
-const selectedLanguages = require('../services/selectedServices');
-const user = require('../services/userServices');
 const languages = require('../services/languageServices');
 const userControllers = require('../controllers/users.controllers');
+const selectedLanguageControllers = require('../controllers/selectedLanguages.controllers');
 
 
 /**
@@ -17,43 +16,28 @@ router.get('/', (req, res) => {
 /**
  * Adding selected language with different options
  */
-router.post('/addSelectedLanguage/:id', (req, res) => {
-    let selected = req.body;
-    selectedLanguages.add(selected, res)
-
-});
+router.post('/addSelectedLanguage/:id', selectedLanguageControllers.addSelected);
 
 /**
  * GET METHOD {id}
- * Retrive
+ * Retrive all selected languages
+ * by user id
  */
-router.get('/selectedLanguage/:id', (req, res) => {
-    const { id } = req.params;
-    selectedLanguages.findAll({ id }, res)
-
-});
+router.get('/selectedLanguage/:id', selectedLanguageControllers.retrieveAll);
 
 /**
  * GET METHOD {id}
  * Retrive one selected language information
  * of a user 
  */
-router.get('/selectedLanguage/:id', (req, res) => {
-    const { id } = req.params;
-    const { languageId } = req.body;
-    selectedLanguages.findOne({ id, languageId }, res)
-
-});
+router.get('/selectedLanguage/:id', selectedLanguageControllers.retrieveOne);
 
 /**
  * DELETE METHOD {id/languageId}
  * Remove a specific selected language
  * of a user
  */
-router.delete('/deleteSelectedLanguage/:id/:languageId', (req, res) => {
-    const { id, languageId } = req.params;
-    selectedLanguages.deleteOne({ id, languageId }, res);
-})
+router.delete('/deleteSelectedLanguage/:id/:languageId', selectedLanguageControllers.deleteOne)
 
 /**
  * POST METHOD

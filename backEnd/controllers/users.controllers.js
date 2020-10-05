@@ -12,7 +12,7 @@ module.exports.register = async (req, res, next) => {
         const user = await userServices.register({userEmail}, res);
         return res.send(user);
     } catch(e) {
-        return res.status(400);
+        return res.send(e.message);
     }
 };
 
@@ -28,6 +28,6 @@ module.exports.getUser = async (req, res, next) => {
         const user = await userServices.getUser({id}, res);
         return res.send(user);
     } catch (e) {
-        return res.status(400);
+        return res.send(e.message);
     }
 }
