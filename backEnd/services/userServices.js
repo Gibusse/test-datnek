@@ -1,4 +1,6 @@
 const mysql = require('../config/MySQL');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 
 /**
@@ -10,16 +12,25 @@ const mysql = require('../config/MySQL');
 module.exports.register = async (userData, res) => {
     const querySelect = 'SELECT * FROM users WHERE userEmail = ?';
     const queryInsert = 'INSERT INTO users (userEmail) VALUES (?)';
+    /*const salt = await bcrypt.genSalt();
+    const email = await bcrypt.hash(userData.userEmail, salt);
+    const compareEmail = await bcrypt.compare(userData.userEmail, usermail)*/
     try {
         const response = await mysql.db.query(querySelect, userData.userEmail, (err, row) => {
             if(row[0]) {
-                res.status(200).send(row[0]);
+                let payload = { subject: `${row[0].Id}`};
+                let userId = row[0].Id;
+                let token = jwt.sign(payload, 'secretKey');
+                res.status(200).send({token, userId});
             }else {
                 mysql.db.query(queryInsert, userData.userEmail, (err, result) => {
                     if (err) {
                         res.status(400).send(err.message);
                     } else {
-                        res.status(201).send(result);
+                        let payload = { subject: result.insertId};
+                        let userId = result.insertId;
+                        let token = jwt.sign(payload, 'secretKey');
+                        res.status(201).send({token, userId});
                     }
                 });
             }
@@ -42,7 +53,10 @@ module.exports.getUser = async (data, res) => {
                 res.status(400).send(err);
             } else {
                 if(result[0]) {
-                    res.status(200).send(result[0]);
+                    let payload = { subject: `${result[0].Id}`};
+                    let userId = result[0].Id;
+                    let token = jwt.sign(payload, 'secretKey');
+                    res.status(200).send({token, userId});
                 } else {
                     res.status(404).send(err);
                 }
