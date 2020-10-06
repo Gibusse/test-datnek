@@ -14,14 +14,18 @@ export class NewLanguageComponent implements OnInit {
   addForm: FormGroup;
   listLanguages = [];
   userInfo: UserInfo;
+  id: string;
   errors: [];
-  public userId = localStorage.getItem('id');
+  public userId = localStorage.getItem('token');
   writing = ['Elementaire', 'Pré-intermédiaire', 'Intermédiaire', 'Courant'];
   speaking = ['Elementaire', 'Pré-intermédiaire', 'Intermédiaire', 'Courant'];
   comprehension = ['Elementaire', 'Pré-intermédiaire', 'Intermédiaire', 'Courant'];
 
   constructor(private fb: FormBuilder, private ws: WebServicesService,
-              private usersService: UsersService, private router: Router) { }
+              private usersService: UsersService, private router: Router,
+              private userService: UsersService) {
+                this.id = this.userService.getUserId();
+              }
 
   ngOnInit(): void {
     this.getUser();
@@ -35,12 +39,12 @@ export class NewLanguageComponent implements OnInit {
       speaking: ['', Validators.required],
       writing: ['', Validators.required],
       comprehension: ['', Validators.required],
-      userId: [this.userId]
+      userId: [this.id]
     })
   }
 
   addLanguage(data){
-    this.ws.create('addSelectedLanguage', data, this.userId)
+    this.ws.create('addSelectedLanguage', data, this.id)
       .subscribe(
         res => {
           if(res.affectedRows === 1) this.router.navigateByUrl('/pages/list-of-languages');
@@ -61,7 +65,7 @@ export class NewLanguageComponent implements OnInit {
    * GET user info
    */
   getUser () {
-    this.usersService.getUserInfo(this.userId)
+    this.usersService.getUserInfo(this.id)
       .subscribe(
         res => this.userInfo = res[0],
         error => this.router.navigateByUrl('/login')
@@ -69,7 +73,7 @@ export class NewLanguageComponent implements OnInit {
   };
 
   logOut(){
-    localStorage.removeItem('id');
+    this.userService.logoutUser();
     this.router.navigateByUrl('/login');
   }
 

@@ -31,7 +31,7 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
   public stateText = 'Modal closed';
   userInfo: UserInfo;
   listOfLanguages: [];
-  public userId = localStorage.getItem('id');
+  id: string;
 
   /**
    * Configuration for what table columns should display
@@ -44,7 +44,9 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
 
   constructor(private dialog: MatDialog, private router: Router,
               private params: ActivatedRoute, private ws: WebServicesService,
-              private userService: UsersService) { }
+              private userService: UsersService) {
+                this.id = this.userService.getUserId();
+              }
 
   ngOnInit(): void {
     this.getUser();
@@ -85,7 +87,7 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
    * GET user info
    */
   getUser () {
-    this.userService.getUserInfo(this.userId)
+    this.userService.getUserInfo(this.id)
       .subscribe(
         res => this.userInfo = res,
         error => this.router.navigateByUrl('/login')
@@ -93,7 +95,7 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
   };
 
   getAllLanguages() {
-    this.ws.findAll('selectedLanguage', this.userId)
+    this.ws.findAll('selectedLanguage', this.id)
       .subscribe(
         res => this.dataSource = res,
         error => console.error(error)
@@ -102,7 +104,7 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
 
   deleteLanguage(data) {
     if(confirm('Êtes-vous sûr de vouloir supprimer ce choix ?')){
-      this.ws.deleteOne('deleteSelectedLanguage', data, this.userId)
+      this.ws.deleteOne('deleteSelectedLanguage', data, this.id)
         .subscribe(
           res => {
             if(res.affectedRows === 1) {
@@ -115,7 +117,7 @@ export class ListLanguagesComponent implements OnInit, AfterViewInit {
   }
 
   logOut(){
-    localStorage.removeItem('id');
+    this.userService.logoutUser();
     this.router.navigateByUrl('/login');
   }
 

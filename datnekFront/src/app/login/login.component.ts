@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {WebServicesService} from "../webServices/web-services.service";
+import { UsersService } from '../webServices/users.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +11,8 @@ import {WebServicesService} from "../webServices/web-services.service";
 export class LoginComponent implements OnInit {
  loginForm: FormGroup;
 
-  constructor(private router: Router, private fb: FormBuilder, private ws: WebServicesService) { }
+  constructor(private router: Router, private fb: FormBuilder,
+               private userService: UsersService) { }
 
   ngOnInit() {
     this.initForm();
@@ -31,18 +32,13 @@ export class LoginComponent implements OnInit {
    * @param dataForm
    */
   loginUser(dataForm){
-    this.ws.create('login', dataForm)
+    this.userService.login('login', dataForm)
       .subscribe(
         res => {
-          if (res.affectedRows === 1 || res.userEmail) {
-            if (res.insertId) {
-              localStorage.setItem('id', res.insertId);
-              this.router.navigateByUrl('/pages/list-of-languages');
-            }
-            if(res.Id) {
-              localStorage.setItem('id', res.Id);
-              this.router.navigateByUrl('/pages/list-of-languages')
-            }
+          if (res.token) {
+            localStorage.setItem('token', res.token);
+            localStorage.setItem('userId', res.userId);
+            this.router.navigateByUrl('/pages/list-of-languages');
           }
         },
         error => {}
