@@ -53,11 +53,7 @@ module.exports.getUser = async (data, res) => {
                 res.status(400).send(err);
             } else {
                 if(result[0]) {
-                    let payload = { subject: `${result[0].Id}`};
-                    let userId = result[0].Id;
-                    let userEmail = result[0].userEmail;
-                    let token = jwt.sign(payload, 'secretKey');
-                    res.status(200).send({token, userId, userEmail});
+                    res.status(200).send(result[0]);
                 } else {
                     res.status(404).send(err);
                 }

@@ -4,7 +4,7 @@ import { LoginComponent } from './login.component';
 import {Router} from "@angular/router";
 import {FormBuilder} from "@angular/forms";
 import {WebServicesService} from "../webServices/web-services.service";
-import {HttpClient} from "@angular/common/http";
+import { UsersService } from '../webServices/users.service';
 
 fdescribe('LoginComponent', () => {
   let component: LoginComponent;
@@ -18,7 +18,9 @@ fdescribe('LoginComponent', () => {
       providers: [
         FormBuilder,
         { provider: Router, useValue: {}},
-        { provider: WebServicesService, useValue: {}}]
+        { provider: UsersService, useValue: {}},
+        {}
+      ]
     })
     .compileComponents();
 
